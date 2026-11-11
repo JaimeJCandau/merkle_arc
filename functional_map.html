@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Arc functional map</title>
+<style>
+:root { --page:#ffffff; --legend-text:#808080; color-scheme:light; }
+@media (prefers-color-scheme: dark) { :root { --page:#141414; --legend-text:#9a9a9a; color-scheme:dark; } }
+html,body { margin:0; background:var(--page); }
+.wrap { max-width:1100px; margin:0 auto; padding:24px 16px; }
+svg { width:100%; height:auto; display:block; font-family:Aptos,"Segoe UI","Helvetica Neue",Arial,sans-serif; }
+text { dominant-baseline:central; }
+.shell { fill:#232323; stroke:#ffffff; stroke-width:.7; }
+.layer { fill:#595959; stroke:#595959; stroke-width:.7; }
+.layer.op { fill:#3A3A3A; stroke:#3A3A3A; }
+.layer-title { fill:#ffffff; font-size:14.6px; }
+.link { stroke:#E8E8E8; stroke-width:1.4; stroke-dasharray:1.4 1.4; }
+.mod rect { fill:#F2F2F2; stroke:#030E13; stroke-width:.7; }
+.mod.progress rect { stroke-width:2.1; stroke-dasharray:8 6; }
+.mod text { font-size:14.6px; font-weight:700; text-anchor:middle; }
+.mod text.arc { fill:#0328D1; }
+.mod text.conn { fill:#000000; }
+.ext rect { fill:#808080; stroke:#030E13; stroke-width:.7; }
+.ext text { fill:#D9D9D9; font-size:15px; font-weight:700; text-anchor:middle; }
+.legend text { fill:var(--legend-text); font-size:12.5px; }
+.legend text.lg-arc { fill:#0328D1; font-size:10px; font-weight:700; text-anchor:middle; }
+.op { fill:#3D3D3D; stroke:#3D3D3D; }
+.legend text.lg-arc { fill:#0328D1; font-weight:700; text-anchor:middle; }
+.item { cursor:pointer; outline:none; transition:opacity .15s ease; }
+.link { transition:opacity .15s ease; }
+svg.dim .item:not(.on), svg.dim > .link { opacity:.22; }
+.hit { stroke:transparent; stroke-width:14; pointer-events:stroke; }
+.cline .link { pointer-events:none; }
+.panel.item:focus-visible rect { stroke:#0328D1; stroke-width:2.5; }
+.item:focus-visible rect { stroke:#0328D1; stroke-width:2.5; }
+@media (prefers-reduced-motion: reduce) { .item, .link { transition:none; } }
+.dd { transform-box:fill-box; transform-origin:top; transform:scaleY(0); opacity:0; pointer-events:none; transition:transform .2s ease, opacity .15s ease; }
+.dd rect { fill:#6E6E6E; stroke:#030E13; stroke-width:.7; }
+.dd text { fill:#F2F2F2; font-size:13.5px; font-weight:400; text-anchor:start; }
+.item.on .dd { transform:scaleY(1); opacity:1; pointer-events:auto; }
+@media (prefers-reduced-motion: reduce) { .dd { transition:none; } }
+.lg-ext { fill:#808080; stroke:#030E13; stroke-width:.7; }
+.lg-dev { fill:#F2F2F2; stroke:#030E13; stroke-width:.7; }
+.lg-prog { fill:#F2F2F2; stroke:#BFBFBF; stroke-width:2.1; stroke-dasharray:3 2; }
+</style>
+</head>
+<body>
+<div class="wrap">
+<svg viewBox="130 105 980 484" role="img" aria-label="Arc functional map: Frontend layer, Operating Layer with connectors, and external tools">
+<rect class="shell" x="311" y="116" width="773" height="337" rx="10"/>
+<g class="item panel" data-group="fe" tabindex="0"><rect class="layer" x="337" y="166" width="594" height="93" rx="11"/><text class="layer-title" x="345" y="179">Frontend</text></g>
+<rect class="layer op" x="330" y="355" width="722" height="72" rx="11"/>
+<line class="link" x1="554" y1="260" x2="554" y2="355"/>
+<line class="link" x1="703" y1="260" x2="703" y2="355"/>
+<line class="link" x1="844" y1="260" x2="844" y2="355"/>
+<g class="item cline" data-cg="cms"><line class="hit" x1="282" y1="220" x2="353" y2="220"/><line class="link" x1="282" y1="220" x2="353" y2="220"/></g>
+<line class="link" x1="909" y1="220" x2="956" y2="220"/>
+<g class="item cline" data-cg="commerce"><line class="hit" x1="427" y1="414" x2="427" y2="480"/><line class="link" x1="427" y1="414" x2="427" y2="480"/></g>
+<g class="item cline" data-cg="loyalty"><line class="hit" x1="602" y1="414" x2="602" y2="480"/><line class="link" x1="602" y1="414" x2="602" y2="480"/></g>
+<g class="item cline" data-cg="data"><line class="hit" x1="777" y1="414" x2="777" y2="480"/><line class="link" x1="777" y1="414" x2="777" y2="480"/></g>
+<g class="item cline" data-cg="ai"><line class="hit" x1="951" y1="414" x2="951" y2="480"/><line class="link" x1="951" y1="414" x2="951" y2="480"/></g>
+<g class="item mod" data-group="fe" data-cg="cms" tabindex="0"><rect x="353" y="197" width="123" height="46" rx="7.7"/><text class="conn" x="414.5" y="220.0">CMS Connector</text></g>
+<g class="item mod" data-group="fe" tabindex="0"><rect x="497" y="197" width="123" height="46" rx="7.7"/><text class="arc" x="558.5" y="212.25">SEO, GEO,</text><text class="arc" x="558.5" y="227.75">Accessibility</text></g>
+<g class="item mod" data-group="fe" tabindex="0"><rect x="642" y="197" width="123" height="46" rx="7.7"/><text class="arc" x="703.5" y="212.25">Headless FE</text><text class="arc" x="703.5" y="227.75">Application</text></g>
+<g class="item mod" data-group="fe" tabindex="0"><rect x="786" y="197" width="123" height="46" rx="7.7"/><text class="arc" x="847.5" y="220.0">UI Components</text></g>
+<g class="item mod" data-group="fe" tabindex="0"><rect x="956" y="197" width="96" height="46" rx="7.7"/><text class="arc" x="1004.0" y="212.25">Design</text><text class="arc" x="1004.0" y="227.75">System</text></g>
+<g class="item mod" tabindex="0"><rect x="492" y="287" width="120" height="46" rx="7.7"/><text class="arc" x="552.0" y="310.0">AI Assistant</text></g>
+<g class="item mod progress" tabindex="0"><rect x="638" y="287" width="120" height="46" rx="7.7"/><text class="arc" x="698.0" y="310.0">Personalisation</text></g>
+<g class="item mod" tabindex="0"><rect x="784" y="287" width="120" height="46" rx="7.7"/><text class="arc" x="844.0" y="302.25">End to end</text><text class="arc" x="844.0" y="317.75">QA testing</text></g>
+<g class="item mod" data-cg="commerce" tabindex="0"><rect x="357" y="368" width="140" height="46" rx="7.7"/><text class="conn" x="427.0" y="383.25">Commerce</text><text class="conn" x="427.0" y="398.75">Connector</text></g>
+<g class="item mod progress" data-cg="data" tabindex="0"><rect x="707" y="368" width="140" height="46" rx="7.7"/><text class="conn" x="777.0" y="383.25">Data &amp; Identity</text><text class="conn" x="777.0" y="398.75">Connector</text></g>
+<g class="item mod" data-cg="loyalty" tabindex="0"><rect x="532" y="368" width="140" height="46" rx="7.7"/><text class="conn" x="602.0" y="383.25">Loyalty</text><text class="conn" x="602.0" y="398.75">Connector</text></g>
+<g class="item mod" data-cg="ai" tabindex="0"><rect x="882" y="368" width="140" height="46" rx="7.7"/><text class="conn" x="952.0" y="383.25">AI Models</text><text class="conn" x="952.0" y="398.75">Connector</text></g>
+<g class="legend"><rect class="lg-ext" x="620" y="562" width="26" height="11" rx="2"/><text x="654" y="567.5">External tool</text><rect class="lg-dev" x="757" y="562" width="26" height="11" rx="2"/><text x="791" y="567.5">Developed</text><rect class="lg-prog" x="879" y="562" width="26" height="11" rx="2"/><text x="913" y="567.5">In progress</text><rect class="lg-dev" x="1006" y="560" width="26" height="15" rx="2"/><text class="lg-arc" x="1019" y="567.5">Aa</text><text x="1040" y="567.5">Arc module</text></g>
+<g class="item ext has-dd" data-cg="cms" tabindex="0"><g class="dd"><rect x="144" y="227" width="139" height="121" rx="5.5"/><text x="158" y="250">Contentful</text><text x="158" y="270">Optimizely</text><text x="158" y="290">Storyblok</text><text x="158" y="310">Adobe AEM</text><text x="158" y="330">Magnolia</text></g><rect x="144" y="203" width="139" height="33" rx="5.5"/><text x="213.5" y="219.5">CMS</text></g>
+<g class="item ext has-dd" data-cg="commerce" tabindex="0"><g class="dd"><rect x="367" y="504" width="118" height="61" rx="5.5"/><text x="381" y="527">Salesforce</text><text x="381" y="547">Shopify</text></g><rect x="367" y="480" width="118" height="33" rx="5.5"/><text x="426.0" y="496.5">Commerce</text></g>
+<g class="item ext" data-cg="data" tabindex="0"><rect x="719" y="480" width="118" height="33" rx="5.5"/><text x="778.0" y="496.5">CDP, Data</text></g>
+<g class="item ext has-dd" data-cg="loyalty" tabindex="0"><g class="dd"><rect x="542" y="504" width="118" height="41" rx="5.5"/><text x="556" y="527">Talon.One</text></g><rect x="542" y="480" width="118" height="33" rx="5.5"/><text x="601.0" y="496.5">Loyalty Engine</text></g>
+<g class="item ext" data-cg="ai" tabindex="0"><rect x="893" y="480" width="118" height="33" rx="5.5"/><text x="952.0" y="496.5">AI Providers</text></g>
+</svg>
+</div>
+<script>
+(function(){
+  const svg=document.querySelector('svg'), items=[...svg.querySelectorAll('.item')];
+  let pinned=null, t=null;
+  const show=el=>{ clearTimeout(t); items.forEach(i=>i.classList.toggle('on',!!(i===el||(el.classList.contains('panel')&&i.dataset.group===el.dataset.group)||(el.dataset.cg&&i.dataset.cg===el.dataset.cg)))); svg.classList.add('dim'); };
+  const clear=()=>{ items.forEach(i=>i.classList.remove('on')); svg.classList.remove('dim'); };
+  const leave=()=>{ if(pinned) return; clearTimeout(t); t=setTimeout(clear,120); };
+  items.forEach(el=>{
+    el.addEventListener('pointerenter',()=>{ if(!pinned) show(el); });
+    el.addEventListener('pointerleave',leave);
+    el.addEventListener('focus',()=>{ if(!pinned) show(el); });
+    el.addEventListener('blur',leave);
+    const toggle=()=>{ if(pinned===el){ pinned=null; clear(); } else { pinned=el; show(el); } };
+    el.addEventListener('click',e=>{ e.stopPropagation(); toggle(); });
+    el.addEventListener('keydown',e=>{ if(e.key==='Enter'||e.key===' '){ e.preventDefault(); toggle(); } });
+  });
+  document.addEventListener('click',()=>{ if(pinned){ pinned=null; clear(); } });
+  document.addEventListener('keydown',e=>{ if(e.key==='Escape'&&pinned){ pinned=null; clear(); } });
+})();
+</script>
+</body>
+</html>
